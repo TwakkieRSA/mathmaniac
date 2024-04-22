@@ -53,6 +53,9 @@
     <input type="text" id="answer" placeholder="Enter your answer">
     <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
     <p id="timer">00:00</p>
+    <p id="result"></p>
+    <button onclick="reset()" id="doneButton">Done</button>
+
 
 </div>
 
@@ -74,6 +77,16 @@
     document.getElementById('question').style.visibility="hidden";
     document.getElementById('submitbutton').style.visibility="hidden";
     document.getElementById('timer').style.visibility="hidden";
+
+    document.getElementById('result').style.visibility="hidden";
+    document.getElementById('doneButton').style.visibility="hidden";
+
+    var t_minutes = Math.floor(timeAllowed / 60);
+    var t_seconds = timeAllowed % 60;
+
+    // Display the time in MM:SS format
+    var t_displayText = ('0' + t_minutes).slice(-2) + ':' + ('0' + t_seconds).slice(-2);
+    document.getElementById("timer").textContent = t_displayText;
 
     //startTimer();
 
@@ -110,25 +123,51 @@
                 timerDisplay.textContent = "00:00";
                 //alert("Timer Complete!");
                 done = 1;
-                document.getElementById('gobutton').style.visibility='visible';
+                //document.getElementById('gobutton').style.visibility='visible';
                 document.getElementById('answer').style.visibility='hidden';
                 document.getElementById('question').style.visibility="hidden";
                 document.getElementById('submitbutton').style.visibility='hidden';
+                document.getElementById('timer').style.visibility="hidden";
+
 
                 const now = new Date();
                 const currentDateTime = now.toLocaleDateString("en-ZA");
                 questions--;
 
-               const text = `${currentDateTime} Results: ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to +27608910154`;
-               alert(text);
-               questions = 0;
-               score = 0;
-               duration = timeAllowed;
-               return;
+                //display results
+                const text = `${currentDateTime} Results: ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to <a href="https://wa.me/27608910154">0608910154</a>`;
+                document.getElementById("result").textContent = text;
+
+                document.getElementById('result').style.visibility="visible";
+                document.getElementById('doneButton').style.visibility="visible";
+                //alert(text);
+                questions = 0;
+                score = 0;
+                duration = timeAllowed;
+                return;
             }
 
 
         }, 1000); // Update the timer every 1000 milliseconds (1 second)
+    }
+
+    function reset() {
+        questions = 0;
+        score = 0;
+        duration = timeAllowed;
+        var t_minutes = Math.floor(timeAllowed / 60);
+        var t_seconds = timeAllowed % 60;
+
+        // Display the time in MM:SS format
+        var t_displayText = ('0' + t_minutes).slice(-2) + ':' + ('0' + t_seconds).slice(-2);
+        document.getElementById("timer").textContent = t_displayText;
+
+        document.getElementById('gobutton').style.visibility='visible';
+        document.getElementById('result').style.visibility="hidden";
+        document.getElementById('doneButton').style.visibility="hidden";
+        document.getElementById('timer').style.visibility="visible";
+
+
     }
 
     function generateQuestion() {
