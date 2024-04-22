@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kids Addition Game</title>
+<title>Math Maniac</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -47,7 +47,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Kids Math Game</h1>
+    <h1>Math Maniac</h1>
     <button onclick="go()" id="gobutton">Go</button>
     <div id="question"></div>
     <input type="text" id="answer" placeholder="Enter your answer">
@@ -71,7 +71,7 @@
     score = 0;
     questions = 0;
 
-    const timeAllowed = 5; // Timer in seconds
+    const timeAllowed = 120; // Timer in seconds
     const maxNumber = 100;   // Highest numbers for equations
 
     document.getElementById('answer').style.visibility="hidden";
