@@ -53,7 +53,7 @@
     <input type="text" id="answer" placeholder="Enter your answer">
     <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
     <p id="timer">00:00</p>
-    <p id="result"></p>
+    <p id="result"></p><a href="https://wa.me/27608910154" id="wa_link">0608910154</a></br>
     <button onclick="reset()" id="doneButton">Done</button>
 
 
@@ -79,6 +79,7 @@
     document.getElementById('timer').style.visibility="hidden";
 
     document.getElementById('result').style.visibility="hidden";
+    document.getElementById('wa_link').style.visibility="hidden";
     document.getElementById('doneButton').style.visibility="hidden";
 
     var t_minutes = Math.floor(timeAllowed / 60);
@@ -135,10 +136,11 @@
                 questions--;
 
                 //display results
-                const text = `${currentDateTime} Results: ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to <a href="https://wa.me/27608910154">0608910154</a>`;
+                const text = `${currentDateTime} Results: ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to `;
                 document.getElementById("result").textContent = text;
 
                 document.getElementById('result').style.visibility="visible";
+                document.getElementById('wa_link').style.visibility="visible";
                 document.getElementById('doneButton').style.visibility="visible";
                 //alert(text);
                 questions = 0;
@@ -164,6 +166,7 @@
 
         document.getElementById('gobutton').style.visibility='visible';
         document.getElementById('result').style.visibility="hidden";
+        document.getElementById('wa_link').style.visibility="hidden";
         document.getElementById('doneButton').style.visibility="hidden";
         document.getElementById('timer').style.visibility="visible";
 
