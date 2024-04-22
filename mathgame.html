@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Addition Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #question {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    #answer {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Kids Math Game</h1>
+    <button onclick="go()" id="gobutton">Go</button>
+    <div id="question"></div>
+    <input type="text" id="answer" placeholder="Enter your answer">
+    <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
+    <p id="timer">00:00</p>
+
+</div>
+
+<script>
+    //stop undo
+    const questionElement = document.getElementById('question');
+    const answerElement = document.getElementById('answer');
+    let num1, num2, answer, score, questions;
+    var start = new Date();
+    var done = 0;
+
+    score = 0;
+    questions = 0;
+
+    const timeAllowed = 5;
+    const maxNumber = 30;
+
+    document.getElementById('answer').style.visibility="hidden";
+    document.getElementById('question').style.visibility="hidden";
+    document.getElementById('submitbutton').style.visibility="hidden";
+    document.getElementById('timer').style.visibility="hidden";
+
+    //startTimer();
+
+    function go(){
+        // create a new `Date` object
+        done = 0;
+        start = new Date();
+        document.getElementById('gobutton').style.visibility='hidden';
+        document.getElementById('answer').style.visibility='visible';
+        document.getElementById('question').style.visibility="visible";
+        document.getElementById('submitbutton').style.visibility='visible';
+        document.getElementById('timer').style.visibility="visible";
+        startTimer();
+        generateQuestion();
+    }
+
+    function startTimer() {
+        var duration = timeAllowed; // seconds
+        var timerDisplay = document.getElementById("timer");
+
+        var timerInterval = setInterval(function() {
+            var minutes = Math.floor(duration / 60);
+            var seconds = duration % 60;
+
+            // Display the time in MM:SS format
+            var displayText = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+            timerDisplay.textContent = displayText;
+
+            duration--; // Decrease the duration by 1 second
+            document.getElementById('answer').focus();
+
+            if (duration <= -2) {
+                clearInterval(timerInterval); // Stop the timer
+                timerDisplay.textContent = "00:00";
+                //alert("Timer Complete!");
+                done = 1;
+                document.getElementById('gobutton').style.visibility='visible';
+                document.getElementById('answer').style.visibility='hidden';
+                document.getElementById('question').style.visibility="hidden";
+                document.getElementById('submitbutton').style.visibility='hidden';
+
+                const now = new Date();
+                const currentDateTime = now.toLocaleDateString("en-ZA");
+                questions--;
+
+                const text = `1111 ${currentDateTime} Results: ${score} / ${questions}`
+                alert(text);
+                questions = 0;
+                score = 0;
+                duration = timeAllowed;
+                return;
+            }
+
+
+        }, 1000); // Update the timer every 1000 milliseconds (1 second)
+    }
+
+    function generateQuestion() {
+        num1 = Math.floor(Math.random() * maxNumber) + 1;
+        num2 = Math.floor(Math.random() * maxNumber) + 1;
+        const operation = Math.random() < 0.5 ? '+' : '-'; // Randomly select addition or subtraction
+
+        questions++;
+        // Calculate the correct answer
+        let Answer;
+        let questionText;
+        if (operation === '+') {
+            answer = num1 + num2;
+            //questionElement.textContent = `${num1} ${operation} ${num2}?`;
+            questionText = `${num1} ${operation} ${num2}?`;
+            //questionElement.focus();
+        } else {
+          if ( num1 < num2 ) {
+                 answer = num2 - num1;
+                 questionText = `${num2} ${operation} ${num1}?`;
+                 //questionElement.focus();
+          } else {
+                 answer = num1 - num2;
+                 questionText = `${num1} ${operation} ${num2} = ?`;
+                 //questionElement.focus();
+          }}
+        questionElement.textContent = questionText;
+        document.getElementById('answer').focus();
+
+        if (done > 0) {
+                  document.getElementById('gobutton').style.visibility='visible';
+                  document.getElementById('answer').style.visibility='hidden';
+                  document.getElementById('question').style.visibility="hidden";
+                  document.getElementById('submitbutton').style.visibility='hidden';
+
+                  const text = `Well done! ${score} / ${questions}`
+                  alert(text);
+                  questions = 0;
+                  score = 0;
+
+                  return;
+         }
+    }
+
+    function checkAnswer() {
+        if (parseInt(answerElement.value) === answer) {
+            score++;
+            //const text = `Correct! Well done! ${score}`
+            //alert(text);
+
+            generateQuestion();
+            answerElement.value = '';
+        } else {
+            //alert('Incorrect! Try again.');
+            generateQuestion();
+            answerElement.value = '';
+        }
+    }
+</script>
+</body>
+</html>
