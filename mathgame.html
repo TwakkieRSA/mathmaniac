@@ -133,7 +133,7 @@
                 //display results
                 const text = `${currentDateTime} Results: ${score} / ${questions}.`;
                 const msg = `${text}\n Please take a screenshot of this result and WhatsApp to `;
-                document.getElementById("result").textContent = text;
+                document.getElementById("result").textContent = msg;
                 const wa_link = `https://wa.me/27608910154/?text=${text}`
                 document.getElementById("wa_sendtext_link").href = wa_link;
 
