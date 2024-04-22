@@ -67,8 +67,8 @@
     score = 0;
     questions = 0;
 
-    const timeAllowed = 5;
-    const maxNumber = 30;
+    const timeAllowed = 10; // Timer in seconds
+    const maxNumber = 100;   // Highest numbers for equations
 
     document.getElementById('answer').style.visibility="hidden";
     document.getElementById('question').style.visibility="hidden";
@@ -119,12 +119,12 @@
                 const currentDateTime = now.toLocaleDateString("en-ZA");
                 questions--;
 
-                const text = `1111 ${currentDateTime} Results: ${score} / ${questions}`
-                alert(text);
-                questions = 0;
-                score = 0;
-                duration = timeAllowed;
-                return;
+               const text = `${currentDateTime} Results: ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to +27608910154`;
+               alert(text);
+               questions = 0;
+               score = 0;
+               duration = timeAllowed;
+               return;
             }
 
 
@@ -158,19 +158,19 @@
         questionElement.textContent = questionText;
         document.getElementById('answer').focus();
 
-        if (done > 0) {
-                  document.getElementById('gobutton').style.visibility='visible';
-                  document.getElementById('answer').style.visibility='hidden';
-                  document.getElementById('question').style.visibility="hidden";
-                  document.getElementById('submitbutton').style.visibility='hidden';
+        //if (done > 0) {
+        //          document.getElementById('gobutton').style.visibility='visible';
+        //          document.getElementById('answer').style.visibility='hidden';
+       //           document.getElementById('question').style.visibility="hidden";
+       //           document.getElementById('submitbutton').style.visibility='hidden';
+//
+   //               const text = `Well done! ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to https://wa.me/27608910154`
+   //               confirm(text);
+    //              questions = 0;
+    //              score = 0;
 
-                  const text = `Well done! ${score} / ${questions}`
-                  alert(text);
-                  questions = 0;
-                  score = 0;
-
-                  return;
-         }
+       //           return;
+       //  }
     }
 
     function checkAnswer() {
