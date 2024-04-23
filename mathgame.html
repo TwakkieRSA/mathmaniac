@@ -8,10 +8,15 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
+        background-image: url('math2.webp');
+        color: #ffffff;
     }
 
     h1 {
-        color: #333;
+        //color: #333;
+        color: #ffffff;
+        font-family: 'Brush Script MT', cursive;
+        font-size: 100px;
     }
 
     .container {
@@ -43,6 +48,7 @@
         margin-top: 20px;
         font-size: 20px;
     }
+
 </style>
 </head>
 <body>
@@ -71,7 +77,7 @@
     score = 0;
     questions = 0;
 
-    const timeAllowed = 120; // Timer in seconds
+    const timeAllowed = 5; // Timer in seconds
     const maxNumber = 100;   // Highest numbers for equations
 
     document.getElementById('answer').style.visibility="hidden";
@@ -90,6 +96,7 @@
         // create a new `Date` object
         done = 0;
         start = new Date();
+        document.body.style.backgroundImage = "url('math3.jpg')";
         document.getElementById('gobutton').style.visibility='hidden';
         document.getElementById('answer').style.visibility='visible';
         document.getElementById('question').style.visibility="visible";
@@ -174,6 +181,7 @@
         document.getElementById('doneButton').style.visibility="hidden";
         document.getElementById('timer').style.visibility="hidden";
 
+        document.body.style.backgroundImage = "url('math2.webp')";
 
     }
 
