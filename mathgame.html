@@ -8,13 +8,13 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
-        background-image: url('math2.webp');
+        background-image: url('math4.jpeg');
         color: #ffffff;
     }
 
     h1 {
-        //color: #333;
-        color: #ffffff;
+        color: #333;
+        //color: #ffffff;
         font-family: 'Brush Script MT', cursive;
         font-size: 100px;
     }
@@ -26,7 +26,7 @@
     }
 
     button {
-        padding: 10px 20px;
+        padding: 20px 30px;
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -54,7 +54,6 @@
 <body>
 <div class="container">
     <h1>Math Maniac</h1>
-    <button onclick="go()" id="gobutton">Go</button>
     <div id="question"></div>
     <input type="text" id="answer" placeholder="Enter your answer">
     <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
@@ -62,8 +61,7 @@
     <p id="result"></p><a href="https://wa.me/27608910154" id="wa_link">0608910154</a></br>
     <p id="more"> or click here to </p><a href="https://wa.me/27608910154" id="wa_sendtext_link">send WhatsApp with results</a></br>
     <button onclick="reset()" id="doneButton">Done</button>
-
-
+    <button onclick="go()" id="gobutton">Go</button>
 </div>
 
 <script>
@@ -77,8 +75,8 @@
     score = 0;
     questions = 0;
 
-    const timeAllowed = 5; // Timer in seconds
-    const maxNumber = 100;   // Highest numbers for equations
+    const timeAllowed = 120; // Timer in seconds
+    const maxNumber = 50;   // Highest numbers for equations
 
     document.getElementById('answer').style.visibility="hidden";
     document.getElementById('question').style.visibility="hidden";
