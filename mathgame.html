@@ -62,7 +62,7 @@
     <input type="text" id="answer" placeholder="Enter your answer">
     <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
     <p id="timer">00:00</p>
-    <button onclick="go()" id="gobutton">Level 1</button><button onclick="go2()" id="go2button">Level 2</button>
+    <button onclick="go()" id="gobutton">Level 1</br>Max number 30</button>  <button onclick="go2()" id="go2button">Level 2</br>Max number 100</button>
     <p id="result"></p><a href="https://wa.me/27608910154" id="wa_link">0608910154</a></br>
     <p id="more"> or click here to </p><a href="https://wa.me/27608910154" id="wa_sendtext_link">send WhatsApp with results</a></br>
     <button onclick="reset()" id="doneButton">Done</button>
@@ -80,7 +80,7 @@
     questions = 0;
 
     const timeAllowed = 120; // Timer in seconds
-    const maxNumber = 30;   // Highest numbers for equations
+    let maxNumber;
 
     document.getElementById('answer').style.visibility="hidden";
     document.getElementById('question').style.visibility="hidden";
@@ -95,12 +95,24 @@
     document.getElementById('doneButton').style.visibility="hidden";
 
     function go2(){
-        maxNumber = 100;    
-        go();
+        maxNumber = 100; // Highest numbers for equations
+        // create a new `Date` object
+        done = 0;
+        start = new Date();
+        document.body.style.backgroundImage = "url('page06.jpg')";
+        document.getElementById('gobutton').style.visibility='hidden';
+        document.getElementById('go2button').style.visibility='hidden';
+        document.getElementById('answer').style.visibility='visible';
+        document.getElementById('question').style.visibility="visible";
+        document.getElementById('submitbutton').style.visibility='visible';
+        startTimer();
+        generateQuestion();
     }
+
     function go(){
         // create a new `Date` object
         done = 0;
+        maxNumber = 30; // Highest numbers for equations
         start = new Date();
         document.body.style.backgroundImage = "url('page06.jpg')";
         document.getElementById('gobutton').style.visibility='hidden';
