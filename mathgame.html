@@ -59,7 +59,7 @@
 <div class="container">
     <h1></br></h1>
     <div id="question"></div>
-    <input type="text" id="answer" placeholder="Enter your answer">
+    <input type="number" id="answer" placeholder="Enter your answer">
     <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
     <p id="timer">00:00</p>
     <button onclick="go3()" id="go3button">Level 1</br>Max number 5</button> <button onclick="go()" id="gobutton">Level 2</br>Max number 30</button>  <button onclick="go2()" id="go2button">Level 3</br>Max number 100</button>
@@ -70,8 +70,17 @@
 
 <script>
     //stop undo
+
+
+
     const questionElement = document.getElementById('question');
     const answerElement = document.getElementById('answer');
+    answerElement.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitbutton").click();
+    }
+    });
     let num1, num2, answer, score, questions;
     var start = new Date();
     var done = 0;
