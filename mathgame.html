@@ -79,7 +79,7 @@
     score = 0;
     questions = 0;
 
-    const timeAllowed = 30; // Timer in seconds
+    const timeAllowed = 120; // Timer in seconds
     let maxNumber;
 
     document.getElementById('answer').style.visibility="hidden";
@@ -110,7 +110,7 @@
         generateQuestion();
     }
 
-        function go3(){
+   function go3(){
         // create a new `Date` object
         done = 0;
         maxNumber = 5; // Highest numbers for equations
@@ -125,7 +125,7 @@
         startTimer();
         generateQuestion();
     }
-    
+
     function go(){
         // create a new `Date` object
         done = 0;
@@ -176,9 +176,10 @@
 
                 //display results
                 document.body.style.backgroundImage = "url('page05.jpg')";
-                const text = `${currentDateTime} Results: ${score} / ${questions}.`;
+                const text = `${currentDateTime} Results: ${score} / ${questions}.\n`;
                 //const msg = `${text}\n Please take a screenshot of this result and WhatsApp to `;
-                document.getElementById("result").textContent = msg;
+                //document.getElementById("result").textContent = msg;
+                document.getElementById("result").textContent = text;
                 //const wa_link = `https://wa.me/27608910154/?text=${text}`
                 //document.getElementById("wa_sendtext_link").href = wa_link;
 
