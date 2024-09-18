@@ -8,7 +8,7 @@
     body {
         font-family: Arial, sans-serif;
         text-align: center;
-        background-image: url('page05.jpg');
+        background-image: url('main.jpg');
         background-repeat: no-repeat;
         background-size: 100% 100%;
         min-height: 100vh;
@@ -88,7 +88,7 @@
     score = 0;
     questions = 0;
 
-    const timeAllowed = 120; // Timer in seconds
+    const timeAllowed = 5; // Timer in seconds
     let maxNumber;
 
     document.getElementById('answer').style.visibility="hidden";
@@ -108,7 +108,7 @@
         // create a new `Date` object
         done = 0;
         start = new Date();
-        document.body.style.backgroundImage = "url('page06.jpg')";
+        document.body.style.backgroundImage = "url('quiz.jpg')";
         document.getElementById('gobutton').style.visibility='hidden';
         document.getElementById('go2button').style.visibility='hidden';
         document.getElementById('go3button').style.visibility='hidden';
@@ -122,9 +122,9 @@
    function go3(){
         // create a new `Date` object
         done = 0;
-        maxNumber = 10; // Highest numbers for equations
+        maxNumber = 5; // Highest numbers for equations
         start = new Date();
-        document.body.style.backgroundImage = "url('page06.jpg')";
+        document.body.style.backgroundImage = "url('quiz.jpg')";
         document.getElementById('gobutton').style.visibility='hidden';
         document.getElementById('go2button').style.visibility='hidden';
         document.getElementById('go3button').style.visibility='hidden';
@@ -140,7 +140,7 @@
         done = 0;
         maxNumber = 30; // Highest numbers for equations
         start = new Date();
-        document.body.style.backgroundImage = "url('page06.jpg')";
+        document.body.style.backgroundImage = "url('quiz.jpg')";
         document.getElementById('gobutton').style.visibility='hidden';
         document.getElementById('go2button').style.visibility='hidden';
         document.getElementById('go3button').style.visibility='hidden';
@@ -184,7 +184,7 @@
                 questions--;
 
                 //display results
-                document.body.style.backgroundImage = "url('page05.jpg')";
+                document.body.style.backgroundImage = "url('results.jpg')";
                 const text = `${currentDateTime} Results: ${score} / ${questions}.\n`;
                 //const msg = `${text}\n Please take a screenshot of this result and WhatsApp to `;
                 //document.getElementById("result").textContent = msg;
@@ -231,7 +231,7 @@
         document.getElementById('doneButton').style.visibility="hidden";
         document.getElementById('timer').style.visibility="hidden";
 
-        document.body.style.backgroundImage = "url('page05.jpg')";
+        document.body.style.backgroundImage = "url('main.jpg')";
 
     }
 
