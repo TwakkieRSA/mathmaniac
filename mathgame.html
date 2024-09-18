@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Math Maniac</title>
+<title>Math Chameleon</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -62,17 +62,13 @@
     <input type="number" id="answer" placeholder="Enter your answer">
     <button onclick="checkAnswer()" id="submitbutton">Submit Answer</button>
     <p id="timer">00:00</p>
-    <button onclick="go3()" id="go3button">Level 1</br>Max number 5</button> <button onclick="go()" id="gobutton">Level 2</br>Max number 30</button>  <button onclick="go2()" id="go2button">Level 3</br>Max number 100</button>
+    <button onclick="go(1)" id="l1button">Level 1</br>Max number 5</button> <button onclick="go(2)" id="l2button">Level 2</br>Max number 30</button>  <button onclick="go(3)" id="l3button">Level 3</br>Max number 100</button>
     <p id="result"></p><a href="https://wa.me/27608910154" id="wa_link">0608910154</a></br>
     <p id="more"> or click here to </p><a href="https://wa.me/27608910154" id="wa_sendtext_link">send WhatsApp with results</a></br>
     <button onclick="reset()" id="doneButton">Done</button>
 </div>
 
 <script>
-    //stop undo
-
-
-
     const questionElement = document.getElementById('question');
     const answerElement = document.getElementById('answer');
     answerElement.addEventListener("keypress", function(event) {
@@ -103,54 +99,31 @@
 
     document.getElementById('doneButton').style.visibility="hidden";
 
-    function go2(){
-        maxNumber = 100; // Highest numbers for equations
-        // create a new `Date` object
+    function go(level){
         done = 0;
+        switch (level) {
+            case 1:
+                maxNumber = 5; // Highest numbers for equations
+                break;
+            case 2:
+                maxNumber = 30; // Highest numbers for equations
+                break;
+            case 3:
+                maxNumber = 100; // Highest numbers for equations
+                break;
+        }
+
         start = new Date();
         document.body.style.backgroundImage = "url('quiz.jpg')";
-        document.getElementById('gobutton').style.visibility='hidden';
-        document.getElementById('go2button').style.visibility='hidden';
-        document.getElementById('go3button').style.visibility='hidden';
+        document.getElementById('l1button').style.visibility='hidden';
+        document.getElementById('l2button').style.visibility='hidden';
+        document.getElementById('l3button').style.visibility='hidden';
         document.getElementById('answer').style.visibility='visible';
         document.getElementById('question').style.visibility="visible";
         document.getElementById('submitbutton').style.visibility='visible';
         startTimer();
         generateQuestion();
     }
-
-   function go3(){
-        // create a new `Date` object
-        done = 0;
-        maxNumber = 5; // Highest numbers for equations
-        start = new Date();
-        document.body.style.backgroundImage = "url('quiz.jpg')";
-        document.getElementById('gobutton').style.visibility='hidden';
-        document.getElementById('go2button').style.visibility='hidden';
-        document.getElementById('go3button').style.visibility='hidden';
-        document.getElementById('answer').style.visibility='visible';
-        document.getElementById('question').style.visibility="visible";
-        document.getElementById('submitbutton').style.visibility='visible';
-        startTimer();
-        generateQuestion();
-    }
-
-    function go(){
-        // create a new `Date` object
-        done = 0;
-        maxNumber = 30; // Highest numbers for equations
-        start = new Date();
-        document.body.style.backgroundImage = "url('quiz.jpg')";
-        document.getElementById('gobutton').style.visibility='hidden';
-        document.getElementById('go2button').style.visibility='hidden';
-        document.getElementById('go3button').style.visibility='hidden';
-        document.getElementById('answer').style.visibility='visible';
-        document.getElementById('question').style.visibility="visible";
-        document.getElementById('submitbutton').style.visibility='visible';
-        startTimer();
-        generateQuestion();
-    }
-
     function startTimer() {
         var duration = timeAllowed; // seconds
         var timerDisplay = document.getElementById("timer");
@@ -172,7 +145,6 @@
                 timerDisplay.textContent = "00:00";
                 //alert("Timer Complete!");
                 done = 1;
-                //document.getElementById('gobutton').style.visibility='visible';
                 document.getElementById('answer').style.visibility='hidden';
                 document.getElementById('question').style.visibility="hidden";
                 document.getElementById('submitbutton').style.visibility='hidden';
@@ -204,8 +176,6 @@
                 duration = timeAllowed;
                 return;
             }
-
-
         }, 1000); // Update the timer every 1000 milliseconds (1 second)
     }
 
@@ -220,19 +190,17 @@
         var t_displayText = ('0' + t_minutes).slice(-2) + ':' + ('0' + t_seconds).slice(-2);
         document.getElementById("timer").textContent = t_displayText;
 
-        document.getElementById('gobutton').style.visibility='visible';
-        document.getElementById('go2button').style.visibility='visible';
-        document.getElementById('go3button').style.visibility='visible';
+        document.getElementById('l1button').style.visibility='visible';
+        document.getElementById('l2button').style.visibility='visible';
+        document.getElementById('l3button').style.visibility='visible';
         document.getElementById('result').style.visibility="hidden";
         document.getElementById('wa_link').style.visibility="hidden";
         document.getElementById('more').style.visibility="hidden";
         document.getElementById('wa_sendtext_link').style.visibility="hidden";
-
+        document.getElementById('answer').value="";
         document.getElementById('doneButton').style.visibility="hidden";
         document.getElementById('timer').style.visibility="hidden";
-
         document.body.style.backgroundImage = "url('main.jpg')";
-
     }
 
     function generateQuestion() {
@@ -246,47 +214,27 @@
         let questionText;
         if (operation === '+') {
             answer = num1 + num2;
-            //questionElement.textContent = `${num1} ${operation} ${num2}?`;
             questionText = `${num1} ${operation} ${num2}?`;
-            //questionElement.focus();
         } else {
           if ( num1 < num2 ) {
                  answer = num2 - num1;
                  questionText = `${num2} ${operation} ${num1}?`;
-                 //questionElement.focus();
           } else {
                  answer = num1 - num2;
                  questionText = `${num1} ${operation} ${num2} = ?`;
-                 //questionElement.focus();
-          }}
+          }
+          }
         questionElement.textContent = questionText;
         document.getElementById('answer').focus();
 
-        //if (done > 0) {
-        //          document.getElementById('gobutton').style.visibility='visible';
-        //          document.getElementById('answer').style.visibility='hidden';
-       //           document.getElementById('question').style.visibility="hidden";
-       //           document.getElementById('submitbutton').style.visibility='hidden';
-//
-   //               const text = `Well done! ${score} / ${questions}.\n Please take a screenshot of this result and WhatsApp to https://wa.me/27608910154`
-   //               confirm(text);
-    //              questions = 0;
-    //              score = 0;
-
-       //           return;
-       //  }
     }
 
     function checkAnswer() {
         if (parseInt(answerElement.value) === answer) {
             score++;
-            //const text = `Correct! Well done! ${score}`
-            //alert(text);
-
             generateQuestion();
             answerElement.value = '';
         } else {
-            //alert('Incorrect! Try again.');
             generateQuestion();
             answerElement.value = '';
         }
